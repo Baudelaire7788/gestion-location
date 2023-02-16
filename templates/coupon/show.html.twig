@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Coupon{% endblock %}
+
+{% block body %}
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h2 class="m-0 font-weight-bold text-primary">Coupon</h2>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <tbody>
+                        <tr>
+                            <th>Id</th>
+                            <td>{{ coupon.id }}</td>
+                        </tr>
+                        <tr>
+                            <th>Code</th>
+                            <td>{{ coupon.code }}</td>
+                        </tr>
+                        <tr>
+                            <th>Pourcentage</th>
+                            <td>{{ coupon.pourcentage }}</td>
+                        </tr>
+                        <tr>
+                            <th>DateExpiration</th>
+                            <td>{{ coupon.dateExpiration ? coupon.dateExpiration|date('Y-m-d H:i:s') : '' }}</td>
+                        </tr>
+                        <tr>
+                            <th>NbreUtilisation</th>
+                            <td>{{ coupon.nbreUtilisation }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <a href="{{ path('app_coupon_index') }}"><button class="btn btn-primary">Retour</button></a>
+
+    <a href="{{ path('app_coupon_edit', {'id': coupon.id}) }}"><button class="btn btn-info">Modifier</button></a>
+
+    {{ include('coupon/_delete_form.html.twig') }}
+{% endblock %}

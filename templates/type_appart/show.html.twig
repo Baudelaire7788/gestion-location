@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}TypeAppart{% endblock %}
+
+{% block body %}
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h2 class="m-0 font-weight-bold text-primary">Type Appartement</h2>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <tbody>
+                        <tr>
+                            <th>Id</th>
+                            <td>{{ type_appart.id }}</td>
+                        </tr>
+                        <tr>
+                            <th>Libelle</th>
+                            <td>{{ type_appart.libelle }}</td>
+                        </tr>
+                        <tr>
+                            <th>Description</th>
+                            <td>{{ type_appart.description }}</td>
+                        </tr>
+                        <tr>
+                            <th>DateCreation</th>
+                            <td>{{ type_appart.dateCreation ? type_appart.dateCreation|date('Y-m-d H:i:s') : '' }}</td>
+                        </tr>
+                        <tr>
+                            <th>IsActive</th>
+                            <td>{{ type_appart.isActive ? 'Yes' : 'No' }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <a href="{{ path('app_type_appart_index') }}"><button class="btn btn-primary">Retour</button></a>
+
+    <a href="{{ path('app_type_appart_edit', {'id': type_appart.id}) }}"><button class="btn btn-info">Modifier</button></a>
+
+    {{ include('type_appart/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Chambre index{% endblock %}
+
+{% block body %}
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h2 class="m-0 font-weight-bold text-primary">Chambres</h2>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Libelle</th>
+                            <th>Cout</th>
+                            <th>Superficie</th>
+                            <th>Place</th>
+                            <th>Couche</th>
+                            <th>Lecture</th>
+                            <th>Modification</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for chambre in chambres %}
+                        <tr>
+                            <td>{{ chambre.id }}</td>
+                            <td>{{ chambre.libelle }}</td>
+                            <td>{{ chambre.cout }}</td>
+                            <td>{{ chambre.superficie }}</td>
+                            <td>{{ chambre.place }}</td>
+                            <td>{{ chambre.couche ? 'Yes' : 'No' }}</td>
+                            <td>
+                                <a href="{{ path('app_chambre_show', {'id': chambre.id}) }}"><button class="btn btn-primary">Afficher</button></a>
+                            </td>
+                            <td>
+                                <a href="{{ path('app_chambre_edit', {'id': chambre.id}) }}"><button class="btn btn-info">Modifier</button></a>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="7">Table vide</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <a href="{{ path('app_chambre_new') }}"><button class="btn btn-primary">Ajouter</button></a>
+{% endblock %}

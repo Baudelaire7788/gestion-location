@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Commande index{% endblock %}
+
+{% block body %}
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h2 class="m-0 font-weight-bold text-primary">Commandes</h2>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Affichage</th>
+                            <th>Modification</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for commande in commandes %}
+                        <tr>
+                            <td>{{ commande.id }}</td>
+                            <td>
+                                <a href="{{ path('app_commande_show', {'id': commande.id}) }}"><button class="btn btn-primary">Afficher</button></a>
+                            </td>
+                            <td>
+                                <a href="{{ path('app_commande_edit', {'id': commande.id}) }}"><button class="btn btn-info">Modifier</button></a>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="2">Table vide</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <a href="{{ path('app_commande_new') }}"><button class="btn btn-primary">Ajouter</button></a>
+{% endblock %}

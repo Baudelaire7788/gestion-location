@@ -2,18 +2,211 @@
 <html>
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>{% block title %}Welcome!{% endblock %}</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
         {% endblock %}
+		<link href="{{asset('vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
+		<link href="{{asset('css/sb-admin-2.min.css')}}" rel="stylesheet">
 
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-        {% endblock %}
+        
     </head>
-    <body>
-        {% block body %}{% endblock %}
-    </body>
+
+	<body id="page-top">
+{% if app.user %}
+		<!-- Page Wrapper -->
+		<div id="wrapper">
+
+			<!-- Sidebar -->
+			<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+				<!-- Sidebar - Brand -->
+				<a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{path('app_home')}}">
+					<div class="sidebar-brand-icon rotate-n-15">
+						<i class="fas fa-home"></i>
+					</div>
+					<div class="sidebar-brand-text mx-3">LOCATION</div>
+				</a>
+
+				<!-- Divider -->
+				<hr class="sidebar-divider my-0">
+
+				<!-- Nav Item - Dashboard -->
+				<li class="nav-item active">
+					<a class="nav-link" href="{{path('app_home')}}">
+						<i class="fas fa-fw fa-tachometer-alt"></i>
+						<span>Dashboard</span></a>
+				</li>
+
+				<!-- Divider -->
+				<hr class="sidebar-divider">
+
+				<!-- Heading -->
+				<div class="sidebar-heading">
+					Pages
+				</div>
+
+				<!-- Nav Item - Pages Collapse Menu -->
+				<li class="nav-item">
+					<a class="nav-link" href="{{path('app_type_appart_index')}}">
+						<i class="fas fa-fw fa-list"></i>
+						<span>Types Appartements</span></a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="{{path('app_appartement_index')}}">
+						<i class="fas fa-fw fa-hotel"></i>
+						<span>Appartements</span></a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="{{path('app_chambre_index')}}">
+						<i class="fas fa-fw fa-bed"></i>
+						<span>Chambres</span></a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="{{path('app_coupon_index')}}">
+						<i class="fas fa-fw fa-cut"></i>
+						<span>Coupons</span></a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="{{path('app_commande_index')}}">
+						<i class="fas fa-fw fa-dollar-sign"></i>
+						<span>Commandes</span></a>
+				</li>
+
+			</ul>
+			<!-- End of Sidebar -->
+
+			<!-- Content Wrapper -->
+			<div id="content-wrapper" class="d-flex flex-column">
+				<div class="content">
+
+				<!-- Topbar -->
+					<nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+						<!-- Sidebar Toggle (Topbar) -->
+						<button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+							<i class="fa fa-bars"></i>
+						</button>
+
+						<!-- Topbar Search -->
+						<form
+							class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+							<div class="input-group">
+								<input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+									aria-label="Search" aria-describedby="basic-addon2">
+								<div class="input-group-append">
+									<button class="btn btn-primary" type="button">
+										<i class="fas fa-search fa-sm"></i>
+									</button>
+								</div>
+							</div>
+						</form>
+
+						<!-- Topbar Navbar -->
+						<ul class="navbar-nav ml-auto">
+
+							<!-- Nav Item - Search Dropdown (Visible Only XS) -->
+							<li class="nav-item dropdown no-arrow d-sm-none">
+								<a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
+									data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									<i class="fas fa-search fa-fw"></i>
+								</a>
+								<!-- Dropdown - Messages -->
+								<div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+									aria-labelledby="searchDropdown">
+									<form class="form-inline mr-auto w-100 navbar-search">
+										<div class="input-group">
+											<input type="text" class="form-control bg-light border-0 small"
+												placeholder="Search for..." aria-label="Search"
+												aria-describedby="basic-addon2">
+											<div class="input-group-append">
+												<button class="btn btn-primary" type="button">
+													<i class="fas fa-search fa-sm"></i>
+												</button>
+											</div>
+										</div>
+									</form>
+								</div>
+							</li>
+							
+							<li class="nav-item dropdown no-arrow">
+								<a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+									data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									<span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ app.user.userIdentifier }}</span>
+								</a>
+								<!-- Dropdown - User Information -->
+								<div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+									aria-labelledby="userDropdown">
+									<a class="dropdown-item" href="#">
+										<i class="fas fa-address-book fa-sm fa-fw mr-2 text-gray-400"></i>
+										Profil
+									</a>
+									<a class="dropdown-item" href="#">
+										<i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+										Paramètres
+									</a>
+									<div class="dropdown-divider"></div>
+									<a class="dropdown-item" href="{{ path('app_logout') }}">
+										<i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+										Déconnexion
+									</a>
+								</div>
+							</li>							
+							
+							<!-- Nav Item - User Information -->
+
+						</ul>
+
+					</nav>
+					<!-- End of Topbar -->
+{% endif %}	
+					<div class="container">
+						<div class="panel panel-primary">
+							<div class="panel-body">
+									{% block body %}{% endblock %}
+							</div>
+						</div>
+					</div>
+
+					<!-- Footer -->
+					<footer class="sticky-footer bg-white">
+						<div class="container my-auto">
+							<div class="copyright text-center my-auto">
+								<span>Copyright &copy; Your Website 2023</span>
+							</div>
+						</div>
+					</footer>
+					<!-- End of Footer -->
+
+				</div>
+				<!-- End of Content Wrapper -->
+			</div>
+		<!-- End of Page Wrapper -->
+
+		<!-- Scroll to Top Button-->
+		<a class="scroll-to-top rounded" href="#page-top">
+			<i class="fas fa-angle-up"></i>
+		</a>
+
+	
+
+		{% block javascripts %}
+			{{ encore_entry_script_tags('app') }}
+		{% endblock %}
+
+		<script src="{{asset('vendor/jquery/jquery.min.js')}}"></script>
+		<script src="{{asset('vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+		<script src="{{asset('vendor/jquery-easing/jquery.easing.min.js')}}"></script>
+		<script src="{{asset('js/sb-admin-2.min.js')}}"></script>
+		<script src="{{asset('vendor/chart.js/Chart.min.js')}}"></script>
+		<script src="{{asset('js/demo/chart-area-demo.js')}}"></script>
+		<script src="{{asset('js/demo/chart-pie-demo.js')}}"></script>
+		
+
+	</body>
 </html>
+
+

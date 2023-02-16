@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit TypeAppart{% endblock %}
+
+{% block body %}
+    <h1>Edit TypeAppart</h1>
+
+    {{ include('type_appart/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_type_appart_index') }}"><button class="btn btn-primary mt-2">Retour</button></a>
+
+    {{ include('type_appart/_delete_form.html.twig') }}
+{% endblock %}

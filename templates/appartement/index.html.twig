@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Appartement index{% endblock %}
+
+{% block body %}
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h2 class="m-0 font-weight-bold text-primary">Appartements</h2>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Libelle</th>
+                            <th>Cout</th>
+                            <th>Affichage</th>
+                            <th>Modification</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for appartement in appartements %}
+                        <tr>
+                            <td>{{ appartement.id }}</td>
+                            <td>{{ appartement.libelle }}</td>
+                            <td>{{ appartement.cout }}</td>
+                            <td>
+                                <a href="{{ path('app_appartement_show', {'id': appartement.id}) }}"><button class="btn btn-primary">Afficher</button></a>
+                            </td>
+                            <td>
+                                <a href="{{ path('app_appartement_edit', {'id': appartement.id}) }}"><button class="btn btn-info">Modifier</button></a>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="5">Table vide</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+
+    <a href="{{ path('app_appartement_new') }}"><button class="btn btn-primary">Ajouter</button></a>
+{% endblock %}

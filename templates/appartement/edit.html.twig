@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Appartement{% endblock %}
+
+{% block body %}
+    <h1>Edit Appartement</h1>
+
+    {{ include('appartement/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_appartement_index') }}"><button class="btn btn-primary">Retour</button></a>
+
+    {{ include('appartement/_delete_form.html.twig') }}
+{% endblock %}

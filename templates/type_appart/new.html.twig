@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New TypeAppart{% endblock %}
+{% block body %}
+    <h1>Créer un nouveau TypeAppart</h1>
+
+    {{ include('type_appart/_form.html.twig') }}
+
+    <a href="{{ path('app_type_appart_index') }}"><button class="btn btn-primary mt-2">Retour</button></a>
+{% endblock %}

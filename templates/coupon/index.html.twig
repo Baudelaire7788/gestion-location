@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Coupon index{% endblock %}
+
+{% block body %}
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h2 class="m-0 font-weight-bold text-primary">Coupons</h2>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Code</th>
+                            <th>Pourcentage</th>
+                            <th>DateExpiration</th>
+                            <th>NbreUtilisation</th>
+                            <th>Lecture</th>
+                            <th>Modification</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for coupon in coupons %}
+                        <tr>
+                            <td>{{ coupon.id }}</td>
+                            <td>{{ coupon.code }}</td>
+                            <td>{{ coupon.pourcentage }}</td>
+                            <td>{{ coupon.dateExpiration ? coupon.dateExpiration|date('Y-m-d H:i:s') : '' }}</td>
+                            <td>{{ coupon.nbreUtilisation }}</td>
+                            <td>
+                                <a href="{{ path('app_coupon_show', {'id': coupon.id}) }}"><button class="btn btn-primary">Afficher</button></a>
+                            </td>
+                            <td>
+                                <a href="{{ path('app_coupon_edit', {'id': coupon.id}) }}"><button class="btn btn-info">Modifier</button></a>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="6">Table vide</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <a href="{{ path('app_coupon_new') }}"><button class="btn btn-primary">Ajouter</button></a>
+{% endblock %}

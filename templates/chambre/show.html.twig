@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Chambre{% endblock %}
+
+{% block body %}
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h2 class="m-0 font-weight-bold text-primary">Chambre</h2>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <tbody>
+                        <tr>
+                            <th>Id</th>
+                            <td>{{ chambre.id }}</td>
+                        </tr>
+                        <tr>
+                            <th>Libelle</th>
+                            <td>{{ chambre.libelle }}</td>
+                        </tr>
+                        <tr>
+                            <th>Cout</th>
+                            <td>{{ chambre.cout }}</td>
+                        </tr>
+                        <tr>
+                            <th>Superficie</th>
+                            <td>{{ chambre.superficie }}</td>
+                        </tr>
+                        <tr>
+                            <th>Place</th>
+                            <td>{{ chambre.place }}</td>
+                        </tr>
+                        <tr>
+                            <th>Couche</th>
+                            <td>{{ chambre.couche ? 'Yes' : 'No' }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <a href="{{ path('app_chambre_index') }}"><button class="btn btn-primary">Retour</button></a>
+
+    <a href="{{ path('app_chambre_edit', {'id': chambre.id}) }}"><button class="btn btn-info">Modifier</button></a>
+
+    {{ include('chambre/_delete_form.html.twig') }}
+{% endblock %}
